@@ -1,20 +1,26 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Helios.Util;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Monoka.Client;
 
-namespace Monoka.ExampleGame.Client.Windows
+namespace Monoka.ExampleGame.Client
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
-    public class Game1 : Game
+    public class GameLoop : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private readonly GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        private SceneManager _sceneManager;
 
-        public Game1()
+        public GameLoop()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferHeight = 768,
+                PreferredBackBufferWidth = 1270
+            };
+            _graphics.ApplyChanges();
+
             Content.RootDirectory = "Content";
         }
 
@@ -26,7 +32,12 @@ namespace Monoka.ExampleGame.Client.Windows
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            var ioc = ClientBootstrapper.Wire();
+
+            IsMouseVisible = true;
+
+            _sceneManager = ioc.Resolve<SceneManager>();
+            _sceneManager.Initialize();
 
             base.Initialize();
         }
@@ -38,9 +49,9 @@ namespace Monoka.ExampleGame.Client.Windows
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _sceneManager.LoadContent();
         }
 
         /// <summary>
@@ -49,7 +60,7 @@ namespace Monoka.ExampleGame.Client.Windows
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            _sceneManager.UnloadContent();
         }
 
         /// <summary>
@@ -59,10 +70,7 @@ namespace Monoka.ExampleGame.Client.Windows
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
-            // TODO: Add your update logic here
+            _sceneManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -73,10 +81,12 @@ namespace Monoka.ExampleGame.Client.Windows
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+            _spriteBatch.Begin();
 
-            // TODO: Add your drawing code here
-
+            _sceneManager.Draw(_spriteBatch);
+            
+            _spriteBatch.End();
             base.Draw(gameTime);
         }
     }

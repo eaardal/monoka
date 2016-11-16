@@ -74,6 +74,7 @@
       <HintPath>..\packages\Helios.2.1.2\lib\net45\Helios.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -105,6 +106,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\IScene.cs" />
+    <Compile Include="Client\Messages\GameStateChanged.cs" />
+    <Compile Include="Client\SceneManager.cs" />
+    <Compile Include="Client\Screen.cs" />
+    <Compile Include="Client\ScreenManager.cs" />
     <Compile Include="Client\Startup\AkkaBootstrapper.cs" />
     <Compile Include="Client\Startup\AutofacBootstrapper.cs" />
     <Compile Include="Client\Startup\AutoMapperBootstrapper.cs" />
@@ -115,8 +121,10 @@
     <Compile Include="Common\Infrastructure\Adapters\IAutoMapperAdapter.cs" />
     <Compile Include="Common\Infrastructure\BootstrapConfiguration.cs" />
     <Compile Include="Common\Infrastructure\ClientBootstrapConfiguration.cs" />
+    <Compile Include="Common\Infrastructure\CompileHelper.cs" />
     <Compile Include="Common\Infrastructure\ConsoleUi.cs" />
     <Compile Include="Common\Infrastructure\ConsoleWindow.cs" />
+    <Compile Include="Common\Infrastructure\Exceptions\MonokaException.cs" />
     <Compile Include="Common\Infrastructure\Exceptions\UnexpectedActorAnswer.cs" />
     <Compile Include="Common\Infrastructure\Extensions\ActorPathType.cs" />
     <Compile Include="Common\Infrastructure\Extensions\ActorSystemExtensions.cs" />

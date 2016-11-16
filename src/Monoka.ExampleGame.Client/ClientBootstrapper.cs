@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Monoka.Client.Startup;
+using Monoka.Common.Infrastructure;
 
 namespace Monoka.ExampleGame.Client
 {
     class ClientBootstrapper
     {
-        public static void Wire()
+        public static IIoC Wire()
         {
-            MonokaClientBootstrapper.Wire(config =>
+            return MonokaClientBootstrapper.Wire(config =>
             {
                 config.ConfigureClientConnectionInfo(client =>
                 {

@@ -1,21 +1,29 @@
 ﻿using System;
+using Monoka.Common.Infrastructure;
 
 namespace Monoka.ExampleGame.Client.Windows
 {
 #if WINDOWS || LINUX
-    /// <summary>
-    /// The main class.
-    /// </summary>
+
     public static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            if (CompileConfigurationMode.IsDebug())
+            {
+                ConsoleWindow.Create();
+            }
+
+            using (var game = new GameLoop())
+            {
                 game.Run();
+            }
+
+            if (CompileConfigurationMode.IsDebug())
+            {
+                ConsoleWindow.Destroy();
+            }
         }
     }
 #endif

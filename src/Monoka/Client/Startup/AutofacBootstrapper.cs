@@ -22,12 +22,13 @@ namespace Monoka.Client.Startup
                 .Except<Logger>()
                 .Except<IoC>()
                 .AsImplementedInterfaces()
+                .Named<IScene>(type => type.FullName)
                 .AsSelf();
 
             builder.RegisterType<Logger>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<IoC>().AsSelf().As<IIoC>().SingleInstance();
             builder.RegisterInstance(logger).As<ILogger>().SingleInstance();
-
+            
             configureIoC?.Invoke(builder);
 
             return builder.Build();
