@@ -9,18 +9,19 @@ namespace Monoka.ExampleGame.Client
 {
     public class GameLoop : Game
     {
-        private readonly GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private SceneManager _sceneManager;
 
+        public GraphicsDeviceManager Graphics { get; }
+
         public GameLoop()
         {
-            _graphics = new GraphicsDeviceManager(this)
+            Graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferHeight = 768,
-                PreferredBackBufferWidth = 1270
+                PreferredBackBufferHeight = WindowSize.Height,
+                PreferredBackBufferWidth = WindowSize.Width
             };
-            _graphics.ApplyChanges();
+            Graphics.ApplyChanges();
 
             Content.RootDirectory = "Content";
         }
@@ -33,11 +34,12 @@ namespace Monoka.ExampleGame.Client
         /// </summary>
         protected override void Initialize()
         {
-            var ioc = ClientBootstrapper.Wire();
+            var ioc = ClientBootstrapper.Wire(this);
 
             IsMouseVisible = true;
 
             _sceneManager = ioc.Resolve<SceneManager>();
+            _sceneManager.SetGameState(GameState.Menu);
             _sceneManager.Initialize();
 
             base.Initialize();

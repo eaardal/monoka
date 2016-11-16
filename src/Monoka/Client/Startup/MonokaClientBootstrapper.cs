@@ -14,7 +14,7 @@ namespace Monoka.Client.Startup
             bootstrapConfiguration(bootstrapConfig);
 
             var logger = new Logger();
-            logger.InitializeLogFactories(new DebugLogFactory(), new SerilogLogFactory());
+            logger.InitializeLogFactories(new SerilogLogFactory());
             Log.Initialize(logger);
             Log.Msg(typeof(MonokaClientBootstrapper), log => log.Info("Log framework initialized"));
             

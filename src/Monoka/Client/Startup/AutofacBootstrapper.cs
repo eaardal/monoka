@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using Akka.Util.Internal;
 using Autofac;
 using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Logging;
@@ -21,12 +22,12 @@ namespace Monoka.Client.Startup
             builder.RegisterAssemblyTypes(appAssemblies)
                 .Except<Logger>()
                 .Except<IoC>()
+                .Except<MessageBus>()
                 .AsImplementedInterfaces()
-                .Named<IScene>(type => type.FullName)
                 .AsSelf();
-
-            builder.RegisterType<Logger>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<IoC>().AsSelf().As<IIoC>().SingleInstance();
+            
+            builder.RegisterType<IoC>().As<IIoC>().SingleInstance();
+            builder.RegisterType<MessageBus>().As<IMessageBus>().SingleInstance();
             builder.RegisterInstance(logger).As<ILogger>().SingleInstance();
             
             configureIoC?.Invoke(builder);

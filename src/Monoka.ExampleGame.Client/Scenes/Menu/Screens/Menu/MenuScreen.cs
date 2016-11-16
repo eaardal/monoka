@@ -11,7 +11,7 @@ using Monoka.ExampleGame.Client.Scenes.Menu.Screens.ExitGame;
 
 namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
 {
-    internal class MenuScreen : Screen
+    public class MenuScreen : Screen
     {
         private readonly MenuItemFactory _menuItemFactory;
         private readonly List<MenuItem> _menuItems;

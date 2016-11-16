@@ -21,7 +21,7 @@ namespace Monoka.Server.Startup
             builder.RegisterAssemblyTypes(appAssemblies)
                 .Except<Logger>()
                 .Except<IoC>()
-                //.Except<MessageBus>()
+                .Except<MessageBus>()
                 .AsImplementedInterfaces()
                 .AsSelf();
 

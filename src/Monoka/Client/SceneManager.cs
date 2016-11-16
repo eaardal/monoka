@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Client.Messages;
 using Monoka.Common.Infrastructure;
+using Monoka.Common.Infrastructure.Logging;
 
 namespace Monoka.Client
 {
@@ -25,11 +26,17 @@ namespace Monoka.Client
 
         public void SetGameState(string state)
         {
+            Log.Msg(this, l => l.Info("Setting game state {@GameState}", state));
+
             _currentGameState = state;
 
             _scenes
                 .Where(s => s.ShowFor(state))
-                .ForEach(s => s.ActivateScene());
+                .ForEach(s =>
+                {
+                    Log.Msg(this, l => l.Info("Activating scene {@Scene}", s.GetType().FullName));
+                    s.ActivateScene();
+                });
         }
 
         public void Initialize()

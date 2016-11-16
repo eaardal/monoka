@@ -58,7 +58,7 @@ namespace Monoka.Common.Infrastructure
     /// <summary>
     /// A lightweight pub-sub MessageBus that handles publishing messages/events and subscribing to them.
     /// </summary>
-    public class MessageBus //: IMessageBus
+    public class MessageBus : IMessageBus
     {
         public delegate void MessageDistributorEventHandler<in TMessage>(TMessage e);
 
@@ -88,7 +88,7 @@ namespace Monoka.Common.Infrastructure
         /// Gets or sets the <see cref="PublishMethod"/>. Is <see cref="PublishMethod.SyncSameThread"/> by default.
         /// If no <see cref="PublishMethod"/> is specified when publishing a message/event, this default is used. 
         /// </summary>
-        public static PublishMethod DefaultPublishMethod { get; set; }
+        public PublishMethod DefaultPublishMethod { get; set; }
 
         /// <summary>
         /// Creates a new MessageBus
@@ -103,7 +103,7 @@ namespace Monoka.Common.Infrastructure
         /// </summary>
         /// <typeparam name="TMessage">The type of message/event to publish</typeparam>
         /// <param name="message">The message/event to publish</param>
-        public static void Publish<TMessage>(TMessage message)
+        public void Publish<TMessage>(TMessage message)
         {
             MessageDistributor<TMessage>.Publish(message, DefaultPublishMethod);
         }
@@ -114,7 +114,7 @@ namespace Monoka.Common.Infrastructure
         /// <typeparam name="TMessage">The type of message/event to publish</typeparam>
         /// <param name="message">The message/event to publish</param>
         /// <param name="method">The <see cref="PublishMethod"/> to use when publishing the message to subscribers</param>
-        public static void Publish<TMessage>(TMessage message, PublishMethod method)
+        public void Publish<TMessage>(TMessage message, PublishMethod method)
         {
             MessageDistributor<TMessage>.Publish(message, method);
         }
@@ -124,7 +124,7 @@ namespace Monoka.Common.Infrastructure
         /// </summary>
         /// <typeparam name="TMessage">The type of message/event to subscribe to</typeparam>
         /// <param name="message">The callback function to be called when receiving a published message/event</param>
-        public static void Subscribe<TMessage>(Action<TMessage> message)
+        public void Subscribe<TMessage>(Action<TMessage> message)
         {
             MessageDistributor<TMessage>.MessageSent += message.Invoke;
         }
@@ -134,7 +134,7 @@ namespace Monoka.Common.Infrastructure
         /// </summary>
         /// <typeparam name="TMessage">The type of message/event to unsubscribe to</typeparam>
         /// <param name="message">The callback function to unsubscribe</param>
-        public static void Unsubscribe<TMessage>(Action<TMessage> message)
+        public void Unsubscribe<TMessage>(Action<TMessage> message)
         {
             MessageDistributor<TMessage>.MessageSent -= message.Invoke;
         }
@@ -143,7 +143,7 @@ namespace Monoka.Common.Infrastructure
         /// Unsubscribes all subscriptions of the given type
         /// </summary>
         /// <typeparam name="TMessage">The type of message/event to unsubscribe to</typeparam>
-        public static void UnsubscribeAll<TMessage>()
+        public void UnsubscribeAll<TMessage>()
         {
             MessageDistributor<TMessage>.UnsubscribeAll();
         }

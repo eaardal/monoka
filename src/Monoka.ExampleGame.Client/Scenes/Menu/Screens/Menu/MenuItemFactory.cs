@@ -9,7 +9,7 @@ using Monoka.ExampleGame.Client.Scenes.Menu.Screens.ExitGame;
 
 namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
 {
-    internal class MenuItemFactory
+    public class MenuItemFactory
     {
         private readonly ContentManager _contentManager;
         private Texture2D _exitGameTexture;

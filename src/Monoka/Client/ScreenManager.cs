@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Common.Infrastructure.Exceptions;
+using Monoka.Common.Infrastructure.Logging;
 
 namespace Monoka.Client
 {
@@ -10,6 +11,8 @@ namespace Monoka.Client
         
         public void ActivateScreen(Screen screen)
         {
+            Log.Msg(this, l => l.Info("Activating screen {@Screen}", screen.GetType().FullName));
+
             _currentScreen = screen;
         }
 

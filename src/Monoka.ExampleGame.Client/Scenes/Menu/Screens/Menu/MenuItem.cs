@@ -5,7 +5,7 @@ using Monoka.Client;
 
 namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
 {
-    internal class MenuItem : Sprite
+    public class MenuItem : Sprite
     {
         public MenuItem(Screen screen, Texture2D texture, Vector2 location) : base(texture, location)
         {
