@@ -108,6 +108,7 @@
     <Compile Include="Common\Infrastructure\ActorMetadata.cs" />
     <Compile Include="Common\Infrastructure\Adapters\AutoMapperAdapter.cs" />
     <Compile Include="Common\Infrastructure\Adapters\IAutoMapperAdapter.cs" />
+    <Compile Include="Common\Infrastructure\BootstrapConfiguration.cs" />
     <Compile Include="Common\Infrastructure\ConsoleUi.cs" />
     <Compile Include="Common\Infrastructure\ConsoleWindow.cs" />
     <Compile Include="Common\Infrastructure\Exceptions\UnexpectedActorAnswer.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Common\Infrastructure\Extensions\ActorSystemExtensions.cs" />
     <Compile Include="Common\Infrastructure\Extensions\LinqExtensions.cs" />
     <Compile Include="Common\Infrastructure\Extensions\StringExtensions.cs" />
+    <Compile Include="Common\Infrastructure\IBootstrapConfiguration.cs" />
     <Compile Include="Common\Infrastructure\IIoC.cs" />
     <Compile Include="Common\Infrastructure\IoC.cs" />
     <Compile Include="Common\Infrastructure\IUi.cs" />

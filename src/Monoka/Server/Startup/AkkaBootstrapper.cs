@@ -1,4 +1,5 @@
-﻿using Akka.Actor;
+﻿using System;
+using Akka.Actor;
 using Akka.Configuration;
 using Akka.DI.AutoFac;
 using Akka.DI.Core;
@@ -7,15 +8,17 @@ using Monoka.Common.Network;
 
 namespace Monoka.Server.Startup
 {
-    public class AkkaBootstrapper
+    internal static class AkkaBootstrapper
     {
-        public static void Wire(IContainer container)
+        public static void Wire(IContainer container, Action<ActorSystem> resolveActorsOnLoad)
         {
             var serverConnectionInfo = container.Resolve<ServerConnectionInfo>();
 
             var system = CreateActorSystem(serverConnectionInfo);
 
             CreateAndRegisterActors(container, system);
+
+            resolveActorsOnLoad(system);
         }
 
         private static void CreateAndRegisterActors(IContainer container, ActorSystem system)
@@ -28,22 +31,8 @@ namespace Monoka.Server.Startup
             builder.RegisterInstance(system).AsImplementedInterfaces().AsSelf().SingleInstance();
 
             builder.Update(container);
-
-            ActivateActors(system);
         }
-
-        /// <summary>
-        /// Activate certain actors on startup so that they may listen for messages immediately.
-        /// </summary>
-        /// <param name="system"></param>
-        private static void ActivateActors(ActorSystem system)
-        {
-            //system.ActorOf(system.DI().Props<CommandDelegatorApi>(), RemoteActorRegistry.Server.RunCommandApi.Name);
-            
-            //var clientRegistry = system.ActorFromIoC(ActorRegistry.ClientRegistry);
-            //var gameSessionManager = system.ActorFromIoC(ActorRegistry.GameSessionManager);
-        }
-
+        
         private static ActorSystem CreateActorSystem(ServerConnectionInfo serverConnection)
         {
             var config = GetConfig(serverConnection);
