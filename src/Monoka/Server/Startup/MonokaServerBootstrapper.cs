@@ -8,10 +8,12 @@ namespace Monoka.Server.Startup
 {
     public static class MonokaServerBootstrapper
     {
-        public static IIoC Wire(Action<IBootstrapConfiguration> bootstrapConfiguration)
+        public static IIoC Wire(Action<IServerBootstrapConfiguration> bootstrapConfiguration = null)
         {
-            var bootstrapConfig = new BootstrapConfiguration();
-            bootstrapConfiguration(bootstrapConfig);
+            WriteServerAsciiText();
+
+            var bootstrapConfig = new ServerBootstrapConfiguration();
+            bootstrapConfiguration?.Invoke(bootstrapConfig);
             
             var logger = new Logger();
             logger.InitializeLogFactories(new DebugLogFactory(), new SerilogLogFactory());
@@ -25,11 +27,18 @@ namespace Monoka.Server.Startup
 
             AutoMapperBootstrapper.Wire(iocContainer, bootstrapConfig.ConfigureMappingAction);
 
-            AkkaBootstrapper.Wire(iocContainer, bootstrapConfig.ResolveActorsOnLoadAction);
+            AkkaBootstrapper.Wire(iocContainer, bootstrapConfig);
 
             logger.Msg(typeof(MonokaServerBootstrapper), l => l.Debug("Monoka server bootstrap configuration done"));
-
+            
             return ioc;
+        }
+
+        private static void WriteServerAsciiText()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(AsciiText.ServerText);
+            Console.ResetColor();
         }
     }
 }

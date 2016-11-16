@@ -40,12 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientAppConnectionInfo.cs" />
     <Compile Include="NetworkMessages\FromClient.cs" />
     <Compile Include="NetworkMessages\FromServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemoteActorRegistry.cs" />
-    <Compile Include="ServerAppConnectionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dto\" />

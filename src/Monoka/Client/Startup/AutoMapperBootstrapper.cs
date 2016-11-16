@@ -11,7 +11,7 @@ namespace Monoka.Client.Startup
             var config = new MapperConfiguration(cfg =>
             {
                 Configure(cfg);
-                configureMapping(cfg);
+                configureMapping?.Invoke(cfg);
             });
 
             config.AssertConfigurationIsValid();

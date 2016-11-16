@@ -1,8 +1,8 @@
-﻿namespace Peon.Server.ConsoleClient
+﻿namespace Monoka.Server.Startup
 {
     internal static class AsciiText
     {
-        public static string ServerHeader => @"
+        public static string ServerText => @"
  ad88888ba  88888888888 88888888ba  8b           d8 88888888888 88888888ba   
 d8""     ""8b 88          88      ""8b `8b         d8' 88          88      ""8b  
 Y8,         88          88      ,8P  `8b       d8'  88          88      ,8P  

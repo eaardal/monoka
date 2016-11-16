@@ -59,8 +59,7 @@ namespace Monoka.Common.Infrastructure.Logging.LogFactories
             {
                 var config = new LoggerConfiguration();
                 config.MinimumLevel.Is(LogEventLevel.Verbose);
-                //config.WriteTo.ColoredConsole(); 
-                //TODO FIX
+                config.WriteTo.ColoredConsole(); 
 
                 return config.CreateLogger();
             }

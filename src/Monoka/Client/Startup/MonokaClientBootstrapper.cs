@@ -8,9 +8,9 @@ namespace Monoka.Client.Startup
 {
     public static class MonokaClientBootstrapper
     {
-        public static IIoC Wire(Action<IBootstrapConfiguration> bootstrapConfiguration)
+        public static IIoC Wire(Action<IClientBootstrapConfiguration> bootstrapConfiguration)
         {
-            var bootstrapConfig = new BootstrapConfiguration();
+            var bootstrapConfig = new ClientBootstrapConfiguration();
             bootstrapConfiguration(bootstrapConfig);
 
             var logger = new Logger();
@@ -25,7 +25,7 @@ namespace Monoka.Client.Startup
 
             AutoMapperBootstrapper.Wire(iocContainer, bootstrapConfig.ConfigureMappingAction);
 
-            AkkaBootstrapper.Wire(iocContainer, bootstrapConfig.ResolveActorsOnLoadAction);
+            AkkaBootstrapper.Wire(iocContainer, bootstrapConfig);
             
             logger.Msg(typeof(MonokaClientBootstrapper), l => l.Debug("Monoka client bootstrap configuration done"));
             

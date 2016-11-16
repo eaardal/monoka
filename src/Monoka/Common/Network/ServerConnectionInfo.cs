@@ -1,11 +1,11 @@
 ﻿namespace Monoka.Common.Network
 {
-    public abstract class ServerConnectionInfo
+    public class ServerConnectionInfo
     {
-        public abstract string ActorSystemName { get; }
-        public abstract string Hostname { get; }
-        public abstract int Port { get; }
-        public abstract string Transport { get; }
+        public string ActorSystemName { get; set; }
+        public string Hostname { get; set; }
+        public int Port { get; set; }
+        public string Transport { get; set; }
         public string ActorSystemPath => $"akka.{Transport}://{ActorSystemName}@{Hostname}:{Port}/";
     }
 }

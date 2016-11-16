@@ -101,6 +101,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorRegistry.cs" />
+    <Compile Include="ClientBootstrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +112,10 @@
     <ProjectReference Include="..\Monoka.ExampleGame.Common.Network\Monoka.ExampleGame.Common.Network.csproj">
       <Project>{7D551875-D571-41CA-AD8F-5B5627ED3D13}</Project>
       <Name>Monoka.ExampleGame.Common.Network</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Monoka\Monoka.csproj">
+      <Project>{881CB66A-E9CE-4812-AC09-8AE7BE5BAD5F}</Project>
+      <Name>Monoka</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

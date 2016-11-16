@@ -82,11 +82,16 @@
       <HintPath>..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Serilog.Sinks.ColoredConsole, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>..\packages\Serilog.Sinks.ColoredConsole.2.1.0-dev-00713\lib\net45\Serilog.Sinks.ColoredConsole.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.36.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.1.36\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -109,6 +114,7 @@
     <Compile Include="Common\Infrastructure\Adapters\AutoMapperAdapter.cs" />
     <Compile Include="Common\Infrastructure\Adapters\IAutoMapperAdapter.cs" />
     <Compile Include="Common\Infrastructure\BootstrapConfiguration.cs" />
+    <Compile Include="Common\Infrastructure\ClientBootstrapConfiguration.cs" />
     <Compile Include="Common\Infrastructure\ConsoleUi.cs" />
     <Compile Include="Common\Infrastructure\ConsoleWindow.cs" />
     <Compile Include="Common\Infrastructure\Exceptions\UnexpectedActorAnswer.cs" />
@@ -117,8 +123,10 @@
     <Compile Include="Common\Infrastructure\Extensions\LinqExtensions.cs" />
     <Compile Include="Common\Infrastructure\Extensions\StringExtensions.cs" />
     <Compile Include="Common\Infrastructure\IBootstrapConfiguration.cs" />
+    <Compile Include="Common\Infrastructure\IClientBootstrapConfiguration.cs" />
     <Compile Include="Common\Infrastructure\IIoC.cs" />
     <Compile Include="Common\Infrastructure\IoC.cs" />
+    <Compile Include="Common\Infrastructure\IServerBootstrapConfiguration.cs" />
     <Compile Include="Common\Infrastructure\IUi.cs" />
     <Compile Include="Common\Infrastructure\LoggingReceiveActor.cs" />
     <Compile Include="Common\Infrastructure\Logging\Contracts\ILog.cs" />
@@ -136,10 +144,12 @@
     <Compile Include="Common\Infrastructure\Logging\Severity.cs" />
     <Compile Include="Common\Infrastructure\MessageBus.cs" />
     <Compile Include="Common\Infrastructure\RemoteActorMetadata.cs" />
+    <Compile Include="Common\Infrastructure\ServerBootstrapConfiguration.cs" />
     <Compile Include="Common\Network\ClientConnectionInfo.cs" />
     <Compile Include="Common\Network\ServerConnectionInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Server\Startup\AkkaBootstrapper.cs" />
+    <Compile Include="Server\Startup\AsciiText.cs" />
     <Compile Include="Server\Startup\AutofacBootstrapper.cs" />
     <Compile Include="Server\Startup\AutoMapperBootstrapper.cs" />
     <Compile Include="Server\Startup\MonokaServerBootstrapper.cs" />

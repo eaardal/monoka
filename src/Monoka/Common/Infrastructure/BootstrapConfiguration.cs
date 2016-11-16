@@ -10,7 +10,7 @@ namespace Monoka.Common.Infrastructure
         public Action<ContainerBuilder> ConfigureIoCAction;
         public Action<IMapperConfigurationExpression> ConfigureMappingAction;
         public Action<ActorSystem> ResolveActorsOnLoadAction;
-
+        
         public void ConfigureIoC(Action<ContainerBuilder> configureIoC)
         {
             ConfigureIoCAction = configureIoC;

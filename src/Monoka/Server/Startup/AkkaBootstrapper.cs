@@ -1,24 +1,33 @@
 ﻿using System;
+using System.Configuration;
 using Akka.Actor;
 using Akka.Configuration;
 using Akka.DI.AutoFac;
 using Akka.DI.Core;
 using Autofac;
+using Monoka.Common.Infrastructure;
 using Monoka.Common.Network;
 
 namespace Monoka.Server.Startup
 {
     internal static class AkkaBootstrapper
     {
-        public static void Wire(IContainer container, Action<ActorSystem> resolveActorsOnLoad)
+        public static void Wire(IContainer container, ServerBootstrapConfiguration serverBootstrapConfiguration)
         {
-            var serverConnectionInfo = container.Resolve<ServerConnectionInfo>();
+            var serverConnectionInfo = new ServerConnectionInfo();
 
+            if (serverBootstrapConfiguration.ConfigureServerConnectionInfoAction == null)
+            {
+                throw new ConfigurationErrorsException("ServerConnectionInfo not set. Ensure \"MonokaServerBootstrapper.Wire(cfg => cfg.ConfigureServerConnectionInfo(--configuration here--))\" is called during initialization");
+            }
+
+            serverBootstrapConfiguration.ConfigureServerConnectionInfoAction(serverConnectionInfo);
+            
             var system = CreateActorSystem(serverConnectionInfo);
 
             CreateAndRegisterActors(container, system);
 
-            resolveActorsOnLoad(system);
+            serverBootstrapConfiguration.ResolveActorsOnLoadAction?.Invoke(system);
         }
 
         private static void CreateAndRegisterActors(IContainer container, ActorSystem system)

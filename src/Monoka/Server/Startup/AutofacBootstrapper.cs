@@ -29,7 +29,7 @@ namespace Monoka.Server.Startup
             builder.RegisterType<IoC>().As<IIoC>().SingleInstance();
             builder.RegisterInstance(logger).As<ILogger>().SingleInstance();
 
-            configureIoC(builder);
+            configureIoC?.Invoke(builder);
 
             return builder.Build();
         }
