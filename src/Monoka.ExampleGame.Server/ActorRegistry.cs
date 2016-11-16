@@ -1,6 +1,4 @@
-﻿using Monoka.ExampleGame.Common.Infrastructure;
-
-namespace Monoka.ExampleGame.Server
+﻿namespace Monoka.ExampleGame.Server
 {
     static class ActorRegistry
     {

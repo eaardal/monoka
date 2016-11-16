@@ -1,4 +1,4 @@
-﻿using Monoka.ExampleGame.Common.Infrastructure;
+﻿using Monoka.Common.Infrastructure;
 
 namespace Monoka.ExampleGame.Common.Network
 {
@@ -6,7 +6,7 @@ namespace Monoka.ExampleGame.Common.Network
     {
         public class Server
         {
-            public static RemoteActorMetadata RunCommandApi => new RemoteActorMetadata("commandDelegatorApi", ServerConnectionInfo.ActorSystemPath);
+            //public static RemoteActorMetadata RunCommandApi => new RemoteActorMetadata("commandDelegatorApi", ServerAppConnectionInfo.ActorSystemPath);
 
         }
 

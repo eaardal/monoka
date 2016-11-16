@@ -102,10 +102,6 @@
   <ItemGroup>
     <Compile Include="ActorRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup\AkkaBootstrapper.cs" />
-    <Compile Include="Startup\AutofacBootstrapper.cs" />
-    <Compile Include="Startup\AutoMapperBootstrapper.cs" />
-    <Compile Include="Startup\ServerAppBootstrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

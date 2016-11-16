@@ -1,5 +1,5 @@
 ﻿using System;
-using Monoka.ExampleGame.Server.Startup;
+using Monoka.ExampleGame.Server.ConsoleClient.Startup;
 using Peon.Server.ConsoleClient;
 
 namespace Monoka.ExampleGame.Server.ConsoleClient
@@ -8,7 +8,7 @@ namespace Monoka.ExampleGame.Server.ConsoleClient
     {
         static void Main(string[] args)
         {
-            ServerAppBootstrapper.Wire();
+            ServerBootstrapper.Wire();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(AsciiText.ServerHeader);
