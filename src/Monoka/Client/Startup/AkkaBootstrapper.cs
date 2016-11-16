@@ -1,4 +1,5 @@
-﻿using Akka.Actor;
+﻿using System;
+using Akka.Actor;
 using Akka.Configuration;
 using Akka.DI.AutoFac;
 using Akka.DI.Core;
@@ -7,15 +8,17 @@ using Monoka.Common.Network;
 
 namespace Monoka.Client.Startup
 {
-    public class AkkaBootstrapper
+    internal static class AkkaBootstrapper
     {
-        public static void Wire(IContainer container)
+        public static void Wire(IContainer container, Action<ActorSystem> resolveActorsOnLoad)
         {
             var clientConnectionInfo = container.Resolve<ClientConnectionInfo>();
 
             var system = CreateActorSystem(clientConnectionInfo);
 
             CreateAndRegisterActors(container, system);
+
+            resolveActorsOnLoad(system);
         }
 
         private static void CreateAndRegisterActors(IContainer container, ActorSystem system)

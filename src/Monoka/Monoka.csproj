@@ -103,7 +103,7 @@
     <Compile Include="Client\Startup\AkkaBootstrapper.cs" />
     <Compile Include="Client\Startup\AutofacBootstrapper.cs" />
     <Compile Include="Client\Startup\AutoMapperBootstrapper.cs" />
-    <Compile Include="Client\Startup\ClientAppBootstrapper.cs" />
+    <Compile Include="Client\Startup\MonokaClientBootstrapper.cs" />
     <Compile Include="Common\Infrastructure\ActorFacade.cs" />
     <Compile Include="Common\Infrastructure\ActorMetadata.cs" />
     <Compile Include="Common\Infrastructure\Adapters\AutoMapperAdapter.cs" />

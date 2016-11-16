@@ -1,13 +1,18 @@
-﻿using Autofac;
+﻿using System;
+using Autofac;
 using AutoMapper;
 
 namespace Monoka.Client.Startup
 {
     internal static class AutoMapperBootstrapper
     {
-        public static void Wire(IContainer container)
+        public static void Wire(IContainer container, Action<IMapperConfigurationExpression> configureMapping)
         {
-            var config = new MapperConfiguration(Configure);
+            var config = new MapperConfiguration(cfg =>
+            {
+                Configure(cfg);
+                configureMapping(cfg);
+            });
 
             config.AssertConfigurationIsValid();
 
