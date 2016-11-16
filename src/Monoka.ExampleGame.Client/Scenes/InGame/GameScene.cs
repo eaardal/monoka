@@ -1,25 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Client;
-using Monoka.ExampleGame.Client.Scenes.Menu.Screens;
-using Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu;
+using Monoka.ExampleGame.Client.Scenes.InGame.Screens;
 
-namespace Monoka.ExampleGame.Client.Scenes.Menu
+namespace Monoka.ExampleGame.Client.Scenes.InGame
 {
-    class MenuScene : Scene
+    class GameScene : Scene
     {
-        private readonly MenuScreen _menuScreen;
+        private readonly GameScreen _gameScreen;
 
-        public MenuScene(ScreenManager screenManager, MenuScreen menuScreen) : base(screenManager)
+        public GameScene(ScreenManager screenManager, GameScreen gameScreen) : base(screenManager)
         {
-            if (menuScreen == null) throw new ArgumentNullException(nameof(menuScreen));
-            _menuScreen = menuScreen;
+            if (gameScreen == null) throw new ArgumentNullException(nameof(gameScreen));
+            _gameScreen = gameScreen;
         }
 
         public override bool ShowFor(string gameState)
         {
-            return gameState == GameState.Menu;
+            return gameState == GameState.InGame;
         }
 
         public override void Initialize()
@@ -29,12 +32,12 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu
 
         public override void LoadContent()
         {
-            _menuScreen.LoadContent();
+            _gameScreen.LoadContent();
         }
 
         public override void UnloadContent()
         {
-            _menuScreen.UnloadContent();
+            _gameScreen.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
@@ -49,7 +52,7 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu
 
         public override void ActivateScene()
         {
-            ScreenManager.ActivateScreen(_menuScreen);
+            ScreenManager.ActivateScreen(_gameScreen);
         }
     }
 }

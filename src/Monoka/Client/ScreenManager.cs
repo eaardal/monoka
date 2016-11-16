@@ -8,7 +8,7 @@ namespace Monoka.Client
     {
         private Screen _currentScreen;
         
-        public void SetScreen(Screen screen)
+        public void ActivateScreen(Screen screen)
         {
             _currentScreen = screen;
         }
