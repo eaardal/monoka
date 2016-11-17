@@ -14,12 +14,7 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
         }
 
         public Screen Screen { get; }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            
-        }
-
+        
         public override void Update(GameTime gameTime)
         {
             

@@ -6,12 +6,12 @@ namespace Monoka.Client
 {
     public abstract class Scene : IScene
     {
-        protected readonly ScreenManager ScreenManager;
+        protected readonly ScreenRenderer ScreenRenderer;
 
-        protected Scene(ScreenManager screenManager)
+        protected Scene(ScreenRenderer screenRenderer)
         {
-            if (screenManager == null) throw new ArgumentNullException(nameof(screenManager));
-            ScreenManager = screenManager;
+            if (screenRenderer == null) throw new ArgumentNullException(nameof(screenRenderer));
+            ScreenRenderer = screenRenderer;
         }
 
         public abstract bool ShowFor(string gameState);

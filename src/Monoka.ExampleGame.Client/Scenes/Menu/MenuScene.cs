@@ -11,7 +11,7 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu
     {
         private readonly MenuScreen _menuScreen;
 
-        public MenuScene(ScreenManager screenManager, MenuScreen menuScreen) : base(screenManager)
+        public MenuScene(ScreenRenderer screenRenderer, MenuScreen menuScreen) : base(screenRenderer)
         {
             if (menuScreen == null) throw new ArgumentNullException(nameof(menuScreen));
             _menuScreen = menuScreen;
@@ -39,18 +39,18 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu
 
         public override void Update(GameTime gameTime)
         {
-            ScreenManager.Update(gameTime);
+            ScreenRenderer.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            ScreenManager.Draw(spriteBatch);
+            ScreenRenderer.Draw(spriteBatch);
         }
 
         public override void ActivateScene()
         {
             Log.Msg(this, l => l.Info("Activating menu screen"));
-            ScreenManager.ActivateScreen(_menuScreen);
+            ScreenRenderer.ActivateScreen(_menuScreen);
         }
     }
 }

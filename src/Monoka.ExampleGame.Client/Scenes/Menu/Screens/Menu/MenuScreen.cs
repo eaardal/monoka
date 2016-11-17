@@ -15,14 +15,14 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
     {
         private readonly MenuItemFactory _menuItemFactory;
         private readonly List<MenuItem> _menuItems;
-        private readonly ScreenManager _screenManager;
+        private readonly ScreenRenderer _screenRenderer;
 
-        public MenuScreen(ScreenManager screenManager, ContentManager contentManager, MenuItemFactory menuItemFactory)
+        public MenuScreen(ScreenRenderer screenRenderer, ContentManager contentManager, MenuItemFactory menuItemFactory)
             : base(contentManager)
         {
-            if (screenManager == null) throw new ArgumentNullException(nameof(screenManager));
+            if (screenRenderer == null) throw new ArgumentNullException(nameof(screenRenderer));
             if (menuItemFactory == null) throw new ArgumentNullException(nameof(menuItemFactory));
-            _screenManager = screenManager;
+            _screenRenderer = screenRenderer;
             _menuItemFactory = menuItemFactory;
 
             _menuItems = new List<MenuItem>();
@@ -36,7 +36,10 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
         
         public override void Draw(SpriteBatch spriteBatch)
         {
-            _menuItems.ForEach(menuItem => menuItem.Draw(spriteBatch));
+            foreach (var menuItem in _menuItems)
+            {
+                menuItem.Draw(spriteBatch);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -49,7 +52,7 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
 
             if (clickedMenuItem != null)
             {
-                _screenManager.ActivateScreen(clickedMenuItem.Screen);
+                _screenRenderer.ActivateScreen(clickedMenuItem.Screen);
             }
         }
 

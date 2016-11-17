@@ -14,7 +14,7 @@ namespace Monoka.ExampleGame.Client.Scenes.InGame
     {
         private readonly GameScreen _gameScreen;
 
-        public GameScene(ScreenManager screenManager, GameScreen gameScreen) : base(screenManager)
+        public GameScene(ScreenRenderer screenRenderer, GameScreen gameScreen) : base(screenRenderer)
         {
             if (gameScreen == null) throw new ArgumentNullException(nameof(gameScreen));
             _gameScreen = gameScreen;
@@ -42,17 +42,17 @@ namespace Monoka.ExampleGame.Client.Scenes.InGame
 
         public override void Update(GameTime gameTime)
         {
-            ScreenManager.Update(gameTime);
+            ScreenRenderer.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            ScreenManager.Draw(spriteBatch);
+            ScreenRenderer.Draw(spriteBatch);
         }
 
         public override void ActivateScene()
         {
-            ScreenManager.ActivateScreen(_gameScreen);
+            ScreenRenderer.ActivateScreen(_gameScreen);
         }
     }
 }
