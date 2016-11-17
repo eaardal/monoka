@@ -2,7 +2,7 @@
 
 namespace Monoka.Server.GameSession
 {
-    class GameSessionPlayer
+    class GameSessionPlayerDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

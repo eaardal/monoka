@@ -28,7 +28,7 @@ namespace Monoka.Server.GameEngine
 
         //        var startGame = new FromServer.StartGame();
 
-        //        var tellClientsToStartGame = new NetworkEmitter.TellClients(startGame, msg.Players.Select(p => p.Id), RemoteActorRegistry.Client.GameSessionApi);
+        //        var tellClientsToStartGame = new NetworkEmitter.TellClients(startGame, msg.Players.Select(p => p.Id), RemoteActorRegistry.Client.GameSessionReceiver);
 
         //        networkEmitter.Tell(tellClientsToStartGame);
         //    }

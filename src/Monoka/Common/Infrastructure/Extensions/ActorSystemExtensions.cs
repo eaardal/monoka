@@ -15,14 +15,14 @@ namespace Monoka.Common.Infrastructure.Extensions
             return context.ActorSelection(actor.Path);
         }
 
-        public static ActorSelection ActorSelection(this ActorSystem actorSystem, RemoteActorMetadata actor, ActorPathType path = ActorPathType.Absolute)
+        public static ActorSelection ActorSelection(this ActorSystem actorSystem, RemoteActorMetadata actor, string remoteBasePath)
         {
-            return actorSystem.ActorSelection(actor.RemotePath);
+            return actorSystem.ActorSelection(actor.WithRemoteBasePath(remoteBasePath));
         }
         
-        public static ActorSelection ActorSelection(this IUntypedActorContext context, RemoteActorMetadata actor, ActorPathType path = ActorPathType.Absolute)
+        public static ActorSelection ActorSelection(this IUntypedActorContext context, RemoteActorMetadata actor, string remoteBasePath)
         {
-            return context.ActorSelection(actor.RemotePath);
+            return context.ActorSelection(actor.WithRemoteBasePath(remoteBasePath));
         }
 
         public static IActorRef ActorOf(this IUntypedActorContext context, ActorMetadata actor)

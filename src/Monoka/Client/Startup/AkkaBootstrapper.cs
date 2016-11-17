@@ -54,8 +54,8 @@ namespace Monoka.Client.Startup
         /// <param name="system"></param>
         private static void ActivateActors(ActorSystem system)
         {
-            //var gameSessionApi = system.ActorOf(system.DI().Props<GameSessionApi>(), RemoteActorRegistry.Client.GameSessionApi.Name);
-            //var gameLobbyApi = system.ActorOf(system.DI().Props<GameLobbyApi>(), RemoteActorRegistry.Client.GameLobbyApi.Name);
+            //var gameSessionApi = system.ActorOf(system.DI().Props<GameSessionReceiver>(), RemoteActorRegistry.Client.GameSessionReceiver.Name);
+            //var gameLobbyApi = system.ActorOf(system.DI().Props<GameLobbyReceiver>(), RemoteActorRegistry.Client.GameLobbyReceiver.Name);
         }
 
         private static ActorSystem CreateActorSystem(ClientConnectionInfo clientConnectionInfo)

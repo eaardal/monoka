@@ -21,7 +21,7 @@ namespace Monoka.Server.GameSession
 
         private const int MinPlayers = 2;
         private const int MaxPlayers = 2;
-        private readonly List<GameSessionPlayer> _players;
+        private readonly List<GameSessionPlayerDto> _players;
         private Guid _sessionId;
         private string _title;
         private readonly ActorSelection _clientRegistry;
@@ -32,10 +32,10 @@ namespace Monoka.Server.GameSession
             if (mapper == null) throw new ArgumentNullException(nameof(mapper));
             _mapper = mapper;
 
-            _players = new List<GameSessionPlayer>();
+            _players = new List<GameSessionPlayerDto>();
 
             _clientRegistry = Context.ActorSelection(ActorRegistry.ClientRegistry);
-            _gameSessionApi = Context.ActorSelection(RemoteActorRegistry.Server.GameSessionApi);
+            _gameSessionApi = Context.ActorSelection(RemoteActorRegistry.Server.GameSessionReceiver);
 
             Become(AwaitingInitialization);
         }
@@ -84,10 +84,10 @@ namespace Monoka.Server.GameSession
 
         private void StartGame()
         {
-            var players = _mapper.Map<IEnumerable<GameSessionPlayer>, IEnumerable<Player>>(_players);
+            var players = _mapper.Map<IEnumerable<GameSessionPlayerDto>, IEnumerable<Player>>(_players);
 
-            _gameLoop = Context.ActorFromIoC<GameEngine.GameEngine>(ActorRegistry.GameEngine.NameWithArgs(_sessionId));
-            _gameLoop.Tell(new GameEngine.GameEngine.StartGame(players, _sessionId));
+            //_gameLoop = Context.ActorFromIoC<GameEngine.GameEngine>(ActorRegistry.GameEngine.NameWithArgs(_sessionId));
+            //_gameLoop.Tell(new GameEngine.GameEngine.StartGame(players, _sessionId));
 
             Become(Playing);
         }
@@ -101,7 +101,7 @@ namespace Monoka.Server.GameSession
 
             msg.GameLobby.Players.ForEach(p =>
             {
-                var player = _mapper.Map<GameLobbyPlayer, Player>(p);
+                var player = _mapper.Map<GameLobbyPlayerDto, Player>(p);
                 var joined = Join(player);
                 if (!joined)
                 {
@@ -138,7 +138,7 @@ namespace Monoka.Server.GameSession
 
             if (canJoin)
             {
-                var gameSessionPlayer = _mapper.Map<Player, GameSessionPlayer>(player);
+                var gameSessionPlayer = _mapper.Map<Player, GameSessionPlayerDto>(player);
                 _players.Add(gameSessionPlayer);
             }
 

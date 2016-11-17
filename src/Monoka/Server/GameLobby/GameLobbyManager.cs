@@ -40,7 +40,7 @@ namespace Monoka.Server.GameLobby
         {
             try
             {
-                var gameLobby = _gameLobbies.FirstOrDefault(l => l.Players.Count < GameLobby.RequiredNrOfPlayers);
+                var gameLobby = _gameLobbies.FirstOrDefault(l => l.Players.Count() < GameLobby.RequiredNrOfPlayers);
 
                 Sender.Tell(gameLobby, Self);
             }
@@ -110,7 +110,7 @@ namespace Monoka.Server.GameLobby
 
         private bool IsEnoughPlayers(GameLobby lobby)
         {
-            return lobby.Players.Count == GameLobby.RequiredNrOfPlayers;
+            return lobby.Players.Count() == GameLobby.RequiredNrOfPlayers;
         }
 
         private async Task OnJoinGameLobby(JoinGameLobby msg)
@@ -155,7 +155,7 @@ namespace Monoka.Server.GameLobby
                 {
                     var client = answer as ClientDto;
 
-                    var player = new GameLobbyPlayer
+                    var player = new GameLobbyPlayerDto
                     {
                         Id = playerId,
                         Name = client.Username,

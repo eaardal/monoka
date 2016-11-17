@@ -6,34 +6,34 @@ namespace Monoka.Server.GameLobby
 {
     public class GameLobby
     {
+        private readonly List<GameLobbyPlayerDto> _players;
+
         public GameLobby()
         {
-            Players = new List<GameLobbyPlayer>();
+            _players = new List<GameLobbyPlayerDto>();
             RequiredNrOfPlayers = 1;
             Title = "New Game Lobby";
             Id = Guid.NewGuid();
         }
 
         public Guid Id { get; set; }
-
-        public List<GameLobbyPlayer> Players { get; set; }
-
+        public IEnumerable<GameLobbyPlayerDto> Players => _players;
         public string Title { get; set; }
-        public static int RequiredNrOfPlayers { get; set; }
         public bool AreAllPlayersReady => Players.All(p => p.IsReady);
+        public static int RequiredNrOfPlayers { get; set; }
 
-        public void Join(GameLobbyPlayer player)
+        public void Join(GameLobbyPlayerDto playerDto)
         {
-            Players.Add(player);
+            _players.Add(playerDto);
         }
 
         public void Leave(Guid playerId)
         {
-            var player = Players.SingleOrDefault(p => p.Id == playerId);
+            var player = _players.SingleOrDefault(p => p.Id == playerId);
 
             if (player != null)
             {
-                Players.Remove(player);
+                _players.Remove(player);
             }
         }
     }

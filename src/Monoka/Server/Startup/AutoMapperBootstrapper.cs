@@ -72,7 +72,7 @@ namespace Monoka.Server.Startup
         //        .ForSourceMember(src => src.IsReady, opt => opt.Ignore())
         //        .ReverseMap();
 
-        //    config.CreateMap<GameSessionPlayer, Player>()
+        //    config.CreateMap<GameSessionPlayerDto, Player>()
         //        .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
         //        .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
         //        .ForSourceMember(src => src.FinishedLoading, opt => opt.Ignore())

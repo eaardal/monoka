@@ -9,11 +9,11 @@ using Monoka.Common.Network.Messages;
 
 namespace Monoka.Server.NetworkApi
 {
-    internal class LoginApi : LoggingReceiveActor
+    internal class LoginReceiver : LoggingReceiveActor
     {
         private readonly ActorSelection _clientRegistry;
 
-        public LoginApi(ILogger log) : base(log)
+        public LoginReceiver(ILogger log) : base(log)
         {
             _clientRegistry = Context.ActorSelection(ActorRegistry.ClientRegistry);
 

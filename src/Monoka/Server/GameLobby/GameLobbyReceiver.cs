@@ -11,14 +11,14 @@ using Monoka.Common.Network.Messages;
 
 namespace Monoka.Server.GameLobby
 {
-    class GameLobbyApi : LoggingReceiveActor
+    class GameLobbyReceiver : LoggingReceiveActor
     {
         private readonly IAutoMapperAdapter _mapper;
         private readonly IActorRef _gameLobbyManager;
         private readonly IActorRef _gameSessionManager;
         private readonly IActorRef _gameLobbyEmitter;
 
-        public GameLobbyApi(ILogger log, IAutoMapperAdapter mapper) : base(log)
+        public GameLobbyReceiver(ILogger log, IAutoMapperAdapter mapper) : base(log)
         {
             if (mapper == null) throw new ArgumentNullException(nameof(mapper));
             _mapper = mapper;

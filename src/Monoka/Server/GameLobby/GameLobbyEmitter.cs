@@ -42,18 +42,18 @@ namespace Monoka.Server.GameLobby
                     {
                         var player = msg.GameLobby.Players.Single(p => p.Id == msg.PlayerId);
 
-                        var playerDto = _mapper.Map<GameLobbyPlayer, PlayerDto>(player);
+                        var playerDto = _mapper.Map<GameLobbyPlayerDto, PlayerDto>(player);
 
-                        var actorPath =
-                            RemoteActorRegistry.Client.GameLobbyApi.WithRemoteBasePath(client.ActorSystemAddress);
+                        var clientGameLobbyActorPath =
+                            RemoteActorRegistry.Client.GameLobbyReceiver.WithRemoteBasePath(client.ActorSystemAddress);
 
-                        var actor = Context.ActorSelection(actorPath);
+                        var clientGameLobby = Context.ActorSelection(clientGameLobbyActorPath);
 
                         var playerJoined = new FromServer.PlayerJoinedGameLobby(playerDto, msg.GameLobby.Id, true);
 
-                        Log.Msg(this, l => l.Debug($"Sending {playerJoined.GetType().FullName} to {actorPath}"));
+                        Log.Msg(this, l => l.Debug($"Sending {playerJoined.GetType().FullName} to {clientGameLobbyActorPath}"));
 
-                        actor.Tell(playerJoined);
+                        clientGameLobby.Tell(playerJoined);
                     }
                 }
 

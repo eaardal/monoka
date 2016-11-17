@@ -13,12 +13,12 @@ namespace Monoka.Server
         public static ActorMetadata GameSessionManager => new ActorMetadata("gameSessionManager", typeof(GameSessionManager));
 
         public static ActorMetadata GameSession => new ActorMetadata("gameSession_{0}", typeof(GameSession.GameSession), GameSessionManager);
-        public static ActorMetadata GameEngine => new ActorMetadata("gameEngine", typeof(GameEngine.GameEngine));
+        //public static ActorMetadata GameEngine => new ActorMetadata("gameEngine", typeof(GameEngine.GameEngine));
         public static ActorMetadata GameLobbyEmitter => new ActorMetadata("gameLobbyEmitter", typeof(GameLobbyEmitter));
         //public static ActorMetadata Bank => new ActorMetadata(typeof(Bank));
         //public static ActorMetadata PowerBar => new ActorMetadata(typeof(PowerBar));
         //public static ActorMetadata BuildingRegistry => new ActorMetadata(typeof(BuildingRegistry));
 
-        //public static ActorMetadata GameSessionApi => new ActorMetadata("gameSessionApi", typeof(GameSessionApi));
+        //public static ActorMetadata GameSessionReceiver => new ActorMetadata("gameSessionApi", typeof(GameSessionReceiver));
     }
 }

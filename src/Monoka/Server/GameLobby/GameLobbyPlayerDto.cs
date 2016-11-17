@@ -2,7 +2,7 @@
 
 namespace Monoka.Server.GameLobby
 {
-    public class GameLobbyPlayer
+    public class GameLobbyPlayerDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

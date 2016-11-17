@@ -1,12 +1,17 @@
 ﻿using System;
+using Monoka.Common.Infrastructure;
+using Monoka.Common.Infrastructure.Adapters;
+using Monoka.Common.Infrastructure.Logging.Contracts;
+using Monoka.Common.Network;
+using Monoka.Common.Network.Messages;
 
 namespace Monoka.Server.GameSession
 {
-    internal class GameSessionApi :LoggingReceiveActor
+    internal class GameSessionReceiver :LoggingReceiveActor
     {
         private readonly IAutoMapperAdapter _mapper;
 
-        public GameSessionApi(ILogger log, IAutoMapperAdapter mapper) : base(log)
+        public GameSessionReceiver(ILogger log, IAutoMapperAdapter mapper) : base(log)
         {
             if (mapper == null) throw new ArgumentNullException(nameof(mapper));
             _mapper = mapper;
@@ -29,7 +34,7 @@ namespace Monoka.Server.GameSession
         {
             foreach (var client in msg.Clients)
             {
-                var actorPath = RemoteActorRegistry.Client.GameSessionApi.WithRemoteBasePath(client.ActorSystemAddress);
+                var actorPath = RemoteActorRegistry.Client.GameSessionReceiver.WithRemoteBasePath(client.ActorSystemAddress);
 
                 Log.Msg(this, l => l.Debug($"Sending to {actorPath}"));
 
