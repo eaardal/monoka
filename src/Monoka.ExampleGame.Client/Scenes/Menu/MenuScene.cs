@@ -60,8 +60,7 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu
             var mouseState = Mouse.GetState();
 
             if (mouseState.LeftButton != ButtonState.Pressed) return;
-
-
+            
             var clickedMenuItem = _menuItems.SingleOrDefault(item => item.IsClicked(mouseState.X, mouseState.Y));
 
             if (clickedMenuItem != null)
