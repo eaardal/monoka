@@ -1,7 +1,5 @@
 using System;
-using System.Linq;
 using System.Reflection;
-using Akka.Util.Internal;
 using Autofac;
 using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Logging;
@@ -16,20 +14,20 @@ namespace Monoka.Client.Startup
             var builder = new ContainerBuilder();
 
             var thisAssembly = Assembly.GetExecutingAssembly();
-            //var referencedAssemblies = thisAssembly.GetReferencedAssemblies().Where(a => a.Name.StartsWith("Monoka"));
-            //var appAssemblies = referencedAssemblies.Select(Assembly.Load).Concat(new[] { thisAssembly }).ToArray();
-
+            
             builder.RegisterAssemblyTypes(thisAssembly)
                 .Except<Logger>()
                 .Except<IoC>()
                 .Except<MessageBus>()
+                .Except<Director>()
                 .AsImplementedInterfaces()
                 .AsSelf();
             
+            builder.RegisterInstance(logger).As<ILogger>().SingleInstance();
             builder.RegisterType<IoC>().As<IIoC>().SingleInstance();
             builder.RegisterType<MessageBus>().As<IMessageBus>().SingleInstance();
-            builder.RegisterInstance(logger).As<ILogger>().SingleInstance();
-            
+            builder.RegisterType<Director>().AsSelf().AsImplementedInterfaces().SingleInstance();
+
             configureIoC?.Invoke(builder);
 
             return builder.Build();

@@ -107,11 +107,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\IScene.cs" />
-    <Compile Include="Client\Messages\GameStateChanged.cs" />
-    <Compile Include="Client\Scene.cs" />
+    <Compile Include="Client\Messages\LoadSceneMessage.cs" />
     <Compile Include="Client\Director.cs" />
-    <Compile Include="Client\Screen.cs" />
-    <Compile Include="Client\ScreenRenderer.cs" />
+    <Compile Include="Client\SceneRenderer.cs" />
     <Compile Include="Client\Sprite.cs" />
     <Compile Include="Client\Startup\AkkaBootstrapper.cs" />
     <Compile Include="Client\Startup\AutofacBootstrapper.cs" />

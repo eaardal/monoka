@@ -39,8 +39,7 @@ namespace Monoka.ExampleGame.Client
             IsMouseVisible = true;
 
             _director = ioc.Resolve<Director>();
-            _director.SetGameState(GameState.Menu);
-            _director.Initialize();
+            _director.Initialize(Scene.Menu);
 
             base.Initialize();
         }

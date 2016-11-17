@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Client;
 using Monoka.Common.Infrastructure;
-using Monoka.ExampleGame.Client.Scenes.InGame.Screens;
-using Monoka.ExampleGame.Client.Scenes.Menu.Screens.ExitGame;
+using Monoka.ExampleGame.Client.Scenes.ExitGame;
+using Monoka.ExampleGame.Client.Scenes.InGame;
 
-namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
+namespace Monoka.ExampleGame.Client.Scenes.Menu
 {
     public class MenuItemFactory
     {
@@ -29,11 +29,11 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
             _gameScreenTexture = _contentManager.Load<Texture2D>("Screens\\Menu\\GameScreenMenuItem");
         }
 
-        public MenuItem CreateMenuItem<T>() where T : Screen
+        public MenuItem CreateMenuItem<T>() where T : IScene
         {
             var texture = GetTextureForScreen(typeof(T));
             var location = ConstructLocation<T>(texture);
-            var gameScreen = (Screen)IoC.Instance.Resolve<T>();
+            var gameScreen = (IScene)IoC.Instance.Resolve<T>();
 
             var menuItem = new MenuItem(gameScreen, texture, location);
             
@@ -42,7 +42,7 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
             return menuItem;
         }
 
-        private Vector2 ConstructLocation<T>(Texture2D texture) where T : Screen
+        private Vector2 ConstructLocation<T>(Texture2D texture) where T : IScene
         {
             var x = (int) (WindowSize.Width/2.0f - texture.Width/2.0f);
             var y = 100*_menuItemCounter;
@@ -51,10 +51,10 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
 
         private Texture2D GetTextureForScreen(Type gameScreenType)
         {
-            if (gameScreenType == typeof(ExitGameScreen))
+            if (gameScreenType == typeof(ExitGameScene))
                 return _exitGameTexture;
 
-            if (gameScreenType == typeof(GameScreen))
+            if (gameScreenType == typeof(GameScene))
                 return _gameScreenTexture;
 
             throw new Exception("Could not find the texture for screen " + gameScreenType.FullName);

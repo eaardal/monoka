@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Client.Messages;
 using Monoka.Common.Infrastructure;
+using Monoka.Common.Infrastructure.Exceptions;
 using Monoka.Common.Infrastructure.Logging;
 
 namespace Monoka.Client
@@ -13,34 +14,23 @@ namespace Monoka.Client
     public class Director
     {
         private readonly IEnumerable<IScene> _scenes;
-        private string _currentGameState;
+        private readonly SceneRenderer _sceneRenderer;
 
-        public Director(IEnumerable<IScene> scenes, IMessageBus messageBus)
+        public Director(IEnumerable<IScene> scenes, SceneRenderer sceneRenderer, IMessageBus messageBus)
         {
             if (scenes == null) throw new ArgumentNullException(nameof(scenes));
+            if (sceneRenderer == null) throw new ArgumentNullException(nameof(sceneRenderer));
             if (messageBus == null) throw new ArgumentNullException(nameof(messageBus));
             _scenes = scenes;
+            _sceneRenderer = sceneRenderer;
             
-            messageBus.Subscribe<GameStateChanged>(msg => _currentGameState = msg.NewGameState);
+            messageBus.Subscribe<LoadSceneMessage>(msg => ActivateScene(msg.SceneId));
         }
-
-        public void SetGameState(string state)
+        
+        public void Initialize(string sceneId)
         {
-            Log.Msg(this, l => l.Info("Setting game state {@GameState}", state));
+            ActivateScene(sceneId);
 
-            _currentGameState = state;
-
-            _scenes
-                .Where(s => s.ShowFor(state))
-                .ForEach(s =>
-                {
-                    Log.Msg(this, l => l.Info("Activating scene {@Scene}", s.GetType().FullName));
-                    s.ActivateScene();
-                });
-        }
-
-        public void Initialize()
-        {
             _scenes.ForEach(scene => scene.Initialize());
         }
 
@@ -56,16 +46,24 @@ namespace Monoka.Client
 
         public void Update(GameTime gameTime)
         {
-            _scenes
-                .Where(scene => scene.ShowFor(_currentGameState))
-                .ForEach(scene => scene.Update(gameTime));
+            _sceneRenderer.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            _scenes
-                .Where(scene => scene.ShowFor(_currentGameState))
-                .ForEach(scene => scene.Draw(spriteBatch));
+            _sceneRenderer.Draw(spriteBatch);
+        }
+
+        private void ActivateScene(string sceneId)
+        {
+            var sceneToActivate = _scenes.SingleOrDefault(scene => scene.Id == sceneId);
+
+            if (sceneToActivate == null)
+            {
+                throw new MonokaException($"No scene found matching sceneId {sceneId}");
+            }
+
+            _sceneRenderer.ActivateScene(sceneToActivate);
         }
     }
 }

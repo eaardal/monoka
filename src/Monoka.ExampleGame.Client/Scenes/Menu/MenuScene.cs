@@ -1,56 +1,86 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Monoka.Client;
-using Monoka.Common.Infrastructure.Logging;
-using Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu;
+using Monoka.Client.Messages;
+using Monoka.Common.Infrastructure;
+using Monoka.ExampleGame.Client.Scenes.ExitGame;
+using Monoka.ExampleGame.Client.Scenes.InGame;
 
 namespace Monoka.ExampleGame.Client.Scenes.Menu
 {
-    public class MenuScene : Scene
+    public class MenuScene : IScene
     {
-        private readonly MenuScreen _menuScreen;
+        private readonly MenuItemFactory _menuItemFactory;
+        private readonly IMessageBus _messageBus;
+        private readonly List<MenuItem> _menuItems;
 
-        public MenuScene(ScreenRenderer screenRenderer, MenuScreen menuScreen) : base(screenRenderer)
+        public MenuScene(MenuItemFactory menuItemFactory, IMessageBus messageBus)
         {
-            if (menuScreen == null) throw new ArgumentNullException(nameof(menuScreen));
-            _menuScreen = menuScreen;
+            if (menuItemFactory == null) throw new ArgumentNullException(nameof(menuItemFactory));
+            if (messageBus == null) throw new ArgumentNullException(nameof(messageBus));
+            _menuItemFactory = menuItemFactory;
+            _messageBus = messageBus;
+
+            _menuItems = new List<MenuItem>();
         }
 
-        public override bool ShowFor(string gameState)
-        {
-            return gameState == GameState.Menu;
-        }
-
-        public override void Initialize()
+        public string Id => Scene.Menu;
+        
+        public void Initialize()
         {
             
         }
 
-        public override void LoadContent()
+        public void LoadContent()
         {
-            _menuScreen.LoadContent();
+            _menuItemFactory.LoadContent();
+            CreateMenuItems();
         }
 
-        public override void UnloadContent()
+        public void UnloadContent()
         {
-            _menuScreen.UnloadContent();
+            throw new NotImplementedException();
         }
 
-        public override void Update(GameTime gameTime)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            ScreenRenderer.Update(gameTime);
+            foreach (var menuItem in _menuItems)
+            {
+                menuItem.Draw(spriteBatch);
+            }
+        }
+        
+        public void Update(GameTime gameTime)
+        {
+            var mouseState = Mouse.GetState();
+
+            if (mouseState.LeftButton != ButtonState.Pressed) return;
+
+
+            var clickedMenuItem = _menuItems.SingleOrDefault(item => item.IsClicked(mouseState.X, mouseState.Y));
+
+            if (clickedMenuItem != null)
+            {
+                var sceneId = clickedMenuItem.Scene.Id;
+                _messageBus.Publish(new LoadSceneMessage(sceneId));
+            }
         }
 
-        public override void Draw(SpriteBatch spriteBatch)
+        private void CreateMenuItems()
         {
-            ScreenRenderer.Draw(spriteBatch);
+            CreateMenuItem<GameScene>();
+            CreateMenuItem<ExitGameScene>();
         }
 
-        public override void ActivateScene()
+        private void CreateMenuItem<T>() where T : IScene
         {
-            Log.Msg(this, l => l.Info("Activating menu screen"));
-            ScreenRenderer.ActivateScreen(_menuScreen);
+            var menuItem = _menuItemFactory.CreateMenuItem<T>();
+            _menuItems.Add(menuItem);
         }
     }
 }

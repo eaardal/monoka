@@ -56,7 +56,7 @@ namespace Monoka.ExampleGame.Client.Startup
 
         private static bool FilterScenes(Type type)
         {
-            return type.IsSubclassOf(typeof(Scene)) && type.IsClass;
+            return type.IsAssignableFrom(typeof(IScene)) && type.IsClass;
         }
     }
 }

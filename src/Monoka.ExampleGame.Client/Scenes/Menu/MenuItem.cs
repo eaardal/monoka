@@ -3,17 +3,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Client;
 
-namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
+namespace Monoka.ExampleGame.Client.Scenes.Menu
 {
     public class MenuItem : Sprite
     {
-        public MenuItem(Screen screen, Texture2D texture, Vector2 location) : base(texture, location)
+        public MenuItem(IScene scene, Texture2D texture, Vector2 location) : base(texture, location)
         {
-            if (screen == null) throw new ArgumentNullException(nameof(screen));
-            Screen = screen;
+            if (scene == null) throw new ArgumentNullException(nameof(scene));
+            Scene = scene;
         }
 
-        public Screen Screen { get; }
+        public IScene Scene { get; }
         
         public override void Update(GameTime gameTime)
         {

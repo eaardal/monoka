@@ -1,13 +1,13 @@
-﻿using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Client;
 
-namespace Monoka.ExampleGame.Client.Scenes.InGame
+namespace Monoka.ExampleGame.Client.Scenes.ExitGame
 {
-    class GameScene : IScene
+    internal class ExitGameScene : IScene
     {
-        public string Id => Scene.InGame;
+        public string Id => Scene.ExitGame;
         
         public void Initialize()
         {
@@ -16,12 +16,12 @@ namespace Monoka.ExampleGame.Client.Scenes.InGame
 
         public void LoadContent()
         {
-       
+            
         }
 
         public void UnloadContent()
         {
-         
+            
         }
 
         public void Update(GameTime gameTime)
