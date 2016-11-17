@@ -30,6 +30,7 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
 
         public override void LoadContent()
         {
+            _menuItemFactory.LoadContent();
             CreateMenuItems();
         }
         

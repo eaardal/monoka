@@ -19,7 +19,16 @@ namespace Monoka.Client.Startup
             Log.Msg(typeof(MonokaClientBootstrapper), log => log.Info("Log framework initialized"));
             
             var iocContainer = AutofacBootstrapper.ConfigureDependencies(logger, bootstrapConfig.ConfigureIoCAction);
-            
+
+            foreach (var registration in iocContainer.ComponentRegistry.Registrations)
+            {
+                Console.WriteLine(registration.Activator.LimitType);
+                foreach (var service in registration.Services)
+                {
+                    Console.WriteLine("\t" + service + " registered as " + registration.Lifetime);
+                }
+            }
+
             var ioc = iocContainer.Resolve<IIoC>();
             ioc.RegisterContainer(iocContainer);
 

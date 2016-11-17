@@ -10,7 +10,7 @@ namespace Monoka.ExampleGame.Client
     public class GameLoop : Game
     {
         private SpriteBatch _spriteBatch;
-        private SceneManager _sceneManager;
+        private Director _director;
 
         public GraphicsDeviceManager Graphics { get; }
 
@@ -38,9 +38,9 @@ namespace Monoka.ExampleGame.Client
 
             IsMouseVisible = true;
 
-            _sceneManager = ioc.Resolve<SceneManager>();
-            _sceneManager.SetGameState(GameState.Menu);
-            _sceneManager.Initialize();
+            _director = ioc.Resolve<Director>();
+            _director.SetGameState(GameState.Menu);
+            _director.Initialize();
 
             base.Initialize();
         }
@@ -54,7 +54,7 @@ namespace Monoka.ExampleGame.Client
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _sceneManager.LoadContent();
+            _director.LoadContent();
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace Monoka.ExampleGame.Client
         /// </summary>
         protected override void UnloadContent()
         {
-            _sceneManager.UnloadContent();
+            _director.UnloadContent();
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Monoka.ExampleGame.Client
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            _sceneManager.Update(gameTime);
+            _director.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -87,7 +87,7 @@ namespace Monoka.ExampleGame.Client
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
 
-            _sceneManager.Draw(_spriteBatch);
+            _director.Draw(_spriteBatch);
             
             _spriteBatch.End();
             base.Draw(gameTime);

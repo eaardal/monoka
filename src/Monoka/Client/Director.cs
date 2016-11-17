@@ -10,12 +10,12 @@ using Monoka.Common.Infrastructure.Logging;
 
 namespace Monoka.Client
 {
-    public class SceneManager
+    public class Director
     {
         private readonly IEnumerable<IScene> _scenes;
         private string _currentGameState;
 
-        public SceneManager(IEnumerable<IScene> scenes, IMessageBus messageBus)
+        public Director(IEnumerable<IScene> scenes, IMessageBus messageBus)
         {
             if (scenes == null) throw new ArgumentNullException(nameof(scenes));
             if (messageBus == null) throw new ArgumentNullException(nameof(messageBus));

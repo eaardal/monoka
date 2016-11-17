@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Monoka.Client;
 using Monoka.Common.Infrastructure.Logging;
-using Monoka.ExampleGame.Client.Scenes.Menu.Screens;
 using Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu;
 
 namespace Monoka.ExampleGame.Client.Scenes.Menu

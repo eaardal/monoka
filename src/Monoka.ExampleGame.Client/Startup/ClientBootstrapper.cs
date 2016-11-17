@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using Autofac;
 using Monoka.Client;
@@ -27,9 +28,21 @@ namespace Monoka.ExampleGame.Client.Startup
                     var thisAssembly = Assembly.GetAssembly(typeof(ClientBootstrapper));
                     var thisAssemblyTypes = thisAssembly.GetTypes();
 
-                    thisAssemblyTypes
-                        .Where(type => type.IsSubclassOf(typeof(Scene)))
-                        .ForEach(type => builder.RegisterType(type).AsSelf().As<IScene>().Named<IScene>(type.FullName).SingleInstance());
+                    builder.RegisterTypes(thisAssemblyTypes)
+                        .Where(type => !FilterScenes(type))
+                        .AsSelf()
+                        .AsImplementedInterfaces();
+
+                    var scenes = thisAssemblyTypes
+                        .Where(FilterScenes);
+
+                    foreach (var scene in scenes)
+                    {
+                        builder.RegisterType(scene)
+                            .AsSelf()
+                            .As<IScene>()
+                            .SingleInstance();
+                    }
 
                     if (game != null)
                     {
@@ -39,6 +52,11 @@ namespace Monoka.ExampleGame.Client.Startup
                     }
                 });
             });
+        }
+
+        private static bool FilterScenes(Type type)
+        {
+            return type.IsSubclassOf(typeof(Scene)) && type.IsClass;
         }
     }
 }

@@ -5,7 +5,7 @@ using Monoka.Common.Infrastructure.Logging;
 
 namespace Monoka.Client
 {
-    public class ScreenManager
+    public class ScreenRenderer
     {
         private Screen _currentScreen;
         
@@ -41,7 +41,7 @@ namespace Monoka.Client
         {
             if (_currentScreen == null)
             {
-                throw new MonokaException("No screen set in ScreenManager");
+                throw new MonokaException("No screen set in ScreenRenderer");
             }
         }
     }

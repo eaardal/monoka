@@ -15,10 +15,10 @@ namespace Monoka.Server.Startup
             var builder = new ContainerBuilder();
 
             var thisAssembly = Assembly.GetExecutingAssembly();
-            var referencedAssemblies = thisAssembly.GetReferencedAssemblies().Where(a => a.Name.StartsWith("Monoka"));
-            var appAssemblies = referencedAssemblies.Select(Assembly.Load).Concat(new[] { thisAssembly }).ToArray();
+            //var referencedAssemblies = thisAssembly.GetReferencedAssemblies().Where(a => a.Name.StartsWith("Monoka"));
+            //var appAssemblies = referencedAssemblies.Select(Assembly.Load).Concat(new[] { thisAssembly }).ToArray();
 
-            builder.RegisterAssemblyTypes(appAssemblies)
+            builder.RegisterAssemblyTypes(thisAssembly)
                 .Except<Logger>()
                 .Except<IoC>()
                 .Except<MessageBus>()
