@@ -6,7 +6,7 @@ using Monoka.Common.Infrastructure.Adapters;
 using Monoka.Common.Infrastructure.Logging.Contracts;
 using Monoka.Common.Network.Messages;
 
-namespace Monoka.Client.Lobby
+namespace Monoka.Client.GameLobby
 {
     class GameLobbyReceiver : LoggingReceiveActor
     {

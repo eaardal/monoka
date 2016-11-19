@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Monoka.Client.Model;
 
-namespace Monoka.Client.Model
+namespace Monoka.Client
 {
     internal class PlayerRegistry
     {

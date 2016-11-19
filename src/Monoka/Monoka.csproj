@@ -106,26 +106,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\GameLobby\GameLobby.cs" />
     <Compile Include="Client\GameSession\GameSessionFacade.cs" />
     <Compile Include="Client\GameSession\GameSessionReceiver.cs" />
-    <Compile Include="Client\HandshakeResult.cs" />
+    <Compile Include="Client\IDirector.cs" />
     <Compile Include="Client\IScene.cs" />
+    <Compile Include="Client\ISceneRenderer.cs" />
     <Compile Include="Client\KnownScene.cs" />
-    <Compile Include="Client\Lobby\GameLobbyFacade.cs" />
-    <Compile Include="Client\Lobby\GameLobbyReceiver.cs" />
-    <Compile Include="Client\Lobby\IGameLobbyFacade.cs" />
-    <Compile Include="Client\Lobby\Results\HandshakeResult.cs" />
-    <Compile Include="Client\Lobby\Results\JoinGameLobbyResult.cs" />
-    <Compile Include="Client\Lobby\Results\LookingForPlayersResult.cs" />
-    <Compile Include="Client\Login\ILoginApiFacade.cs" />
-    <Compile Include="Client\Login\LoginApiFacade.cs" />
+    <Compile Include="Client\GameLobby\GameLobbyFacade.cs" />
+    <Compile Include="Client\GameLobby\GameLobbyReceiver.cs" />
+    <Compile Include="Client\GameLobby\IGameLobbyFacade.cs" />
+    <Compile Include="Client\GameLobby\Results\HandshakeResult.cs" />
+    <Compile Include="Client\GameLobby\Results\JoinGameLobbyResult.cs" />
+    <Compile Include="Client\GameLobby\Results\LookingForPlayersResult.cs" />
+    <Compile Include="Client\Login\ILoginFacade.cs" />
+    <Compile Include="Client\Login\LoginFacade.cs" />
+    <Compile Include="Client\Login\Results\HandshakeResult.cs" />
     <Compile Include="Client\Matchmaker.cs" />
-    <Compile Include="Client\Messages\LoadSceneMessage.cs" />
     <Compile Include="Client\Director.cs" />
-    <Compile Include="Client\Model\GameLobby.cs" />
-    <Compile Include="Client\Model\GameLoop.cs" />
     <Compile Include="Client\Model\Player.cs" />
-    <Compile Include="Client\Model\PlayerRegistry.cs" />
+    <Compile Include="Client\PlayerRegistry.cs" />
     <Compile Include="Client\SceneRenderer.cs" />
     <Compile Include="Client\Sprite.cs" />
     <Compile Include="Client\Startup\AkkaBootstrapper.cs" />

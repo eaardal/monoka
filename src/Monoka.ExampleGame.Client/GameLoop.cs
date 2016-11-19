@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Monoka.Client;
+using Monoka.ExampleGame.Client.Startup;
 
-namespace Monoka.Client.Model
+namespace Monoka.ExampleGame.Client
 {
     public class GameLoop : Game
     {

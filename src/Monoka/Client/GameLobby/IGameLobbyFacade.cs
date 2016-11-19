@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Monoka.Client.Lobby.Results;
-using Monoka.Client.Model;
+using Monoka.Client.GameLobby.Results;
 
-namespace Monoka.Client.Lobby
+namespace Monoka.Client.GameLobby
 {
     public interface IGameLobbyFacade
     {

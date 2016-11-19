@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Monoka.Client.Model;
 
-namespace Monoka.Client.Model
+namespace Monoka.Client.GameLobby
 {
     public class GameLobby
     {

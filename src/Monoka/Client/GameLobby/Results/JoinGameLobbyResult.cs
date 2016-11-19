@@ -1,6 +1,4 @@
-using Monoka.Client.Model;
-
-namespace Monoka.Client.Lobby.Results
+namespace Monoka.Client.GameLobby.Results
 {
     public class JoinGameLobbyResult
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Akka.Actor;
+using Monoka.Client.Login.Results;
 using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Logging.Contracts;
 using Monoka.Common.Network;
@@ -8,9 +9,9 @@ using Monoka.Common.Network.Messages;
 
 namespace Monoka.Client.Login
 {
-    public class LoginApiFacade : ActorFacade, ILoginApiFacade
+    public class LoginFacade : ActorFacade, ILoginFacade
     {
-        public LoginApiFacade(ActorSystem actorSystem, ILogger logger) : base(actorSystem, logger)
+        public LoginFacade(ActorSystem actorSystem, ILogger logger) : base(actorSystem, logger)
         { }
 
         public async Task<HandshakeResult> Handshake(string playerName)

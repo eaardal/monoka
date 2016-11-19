@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Monoka.Client.Lobby;
+using Monoka.Client.GameLobby;
 using Monoka.Client.Login;
+using Monoka.Client.Login.Results;
 using Monoka.Client.Model;
 using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Logging.Contracts;
@@ -10,19 +11,19 @@ namespace Monoka.Client
 {
     public class Matchmaker : LoggingReceiveActor
     {
-        private readonly GameLobby _gameLobby;
+        private readonly GameLobby.GameLobby _gameLobby;
         private readonly IGameLobbyFacade _gameLobbyApiFacade;
-        private readonly ILoginApiFacade _loginApiFacade;
+        private readonly ILoginFacade _loginFacade;
 
-        public Matchmaker(IGameLobbyFacade gameLobbyApiFacade, ILoginApiFacade loginApiFacade, ILogger logger) : base(logger)
+        public Matchmaker(IGameLobbyFacade gameLobbyApiFacade, ILoginFacade loginFacade, ILogger logger) : base(logger)
         {
             if (gameLobbyApiFacade == null) throw new ArgumentNullException(nameof(gameLobbyApiFacade));
-            if (loginApiFacade == null) throw new ArgumentNullException(nameof(loginApiFacade));
+            if (loginFacade == null) throw new ArgumentNullException(nameof(loginFacade));
 
             _gameLobbyApiFacade = gameLobbyApiFacade;
-            _loginApiFacade = loginApiFacade;
+            _loginFacade = loginFacade;
 
-            _gameLobby = new GameLobby();
+            _gameLobby = new GameLobby.GameLobby();
 
             Become(NotLoggedIn);
         }
@@ -39,7 +40,7 @@ namespace Monoka.Client
 
         private async Task<HandshakeResult> InitiateHandshake(string playerName)
         {
-            var result = await _loginApiFacade.Handshake(playerName);
+            var result = await _loginFacade.Handshake(playerName);
 
             var player = new Player(result.PlayerId, playerName)
             {

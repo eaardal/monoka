@@ -4,34 +4,28 @@ using System.Linq;
 using Akka.Util.Internal;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Monoka.Client.Messages;
-using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Exceptions;
-using Monoka.Common.Infrastructure.Logging;
 
 namespace Monoka.Client
 {
-    public class Director
+    public class Director : IDirector
     {
         private readonly IEnumerable<IScene> _scenes;
         private readonly SceneRenderer _sceneRenderer;
 
-        public Director(IEnumerable<IScene> scenes, SceneRenderer sceneRenderer, IMessageBus messageBus)
+        public Director(IEnumerable<IScene> scenes, SceneRenderer sceneRenderer)
         {
             if (scenes == null) throw new ArgumentNullException(nameof(scenes));
             if (sceneRenderer == null) throw new ArgumentNullException(nameof(sceneRenderer));
-            if (messageBus == null) throw new ArgumentNullException(nameof(messageBus));
             _scenes = scenes;
             _sceneRenderer = sceneRenderer;
-            
-            messageBus.Subscribe<LoadSceneMessage>(msg => ActivateScene(msg.SceneId));
         }
         
         public void Initialize(string sceneId)
         {
-            ActivateScene(sceneId);
-
             _scenes.ForEach(scene => scene.Initialize());
+
+            ActivateScene(sceneId);
         }
 
         public void LoadContent()
@@ -63,7 +57,7 @@ namespace Monoka.Client
                 throw new MonokaException($"No scene found matching sceneId {sceneId}");
             }
 
-            _sceneRenderer.ActivateScene(sceneToActivate);
+            _sceneRenderer.RenderScene(sceneToActivate);
         }
     }
 }

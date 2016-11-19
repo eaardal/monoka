@@ -2,8 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Akka.Actor;
-using Monoka.Client.Lobby.Results;
-using Monoka.Client.Model;
+using Monoka.Client.GameLobby.Results;
 using Monoka.Common.Dto;
 using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Adapters;
@@ -11,7 +10,7 @@ using Monoka.Common.Infrastructure.Logging.Contracts;
 using Monoka.Common.Network;
 using Monoka.Common.Network.Messages;
 
-namespace Monoka.Client.Lobby
+namespace Monoka.Client.GameLobby
 {
     public class GameLobbyFacade : ActorFacade, IGameLobbyFacade
     {

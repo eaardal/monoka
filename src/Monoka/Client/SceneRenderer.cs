@@ -5,13 +5,13 @@ using Monoka.Common.Infrastructure.Logging;
 
 namespace Monoka.Client
 {
-    public class SceneRenderer
+    public class SceneRenderer : ISceneRenderer
     {
         private IScene _currentScene;
 
-        public void ActivateScene(IScene scene)
+        public void RenderScene(IScene scene)
         {
-            Log.Msg(this, l => l.Info("Activating scene {@Scene}", scene.GetType().FullName));
+            Log.Msg(this, l => l.Info("Setting current scene to render: {@Scene}", scene.GetType().FullName));
 
             _currentScene = scene;
         }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monoka.Client
+namespace Monoka.Client.Login.Results
 {
     public class HandshakeResult
     {

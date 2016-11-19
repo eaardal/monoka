@@ -1,6 +1,6 @@
 ﻿using Monoka.Common.Dto;
 
-namespace Monoka.Client.Lobby.Results
+namespace Monoka.Client.GameLobby.Results
 {
     public class LookingForPlayersResult
     {
