@@ -9,7 +9,7 @@ using Monoka.Common.Infrastructure.Logging.Contracts;
 
 namespace Monoka.Server
 {
-    class ClientRegistry : LoggingReceiveActor
+    public class ClientRegistry : LoggingReceiveActor
     {
         private ImmutableList<ClientDto> _clients;
 

@@ -102,11 +102,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorRegistry.cs" />
-    <Compile Include="GameLoop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Scenes\ExitGame\ExitGameScene.cs" />
     <Compile Include="Scenes\InGame\GameScene.cs" />
+    <Compile Include="Scenes\LoadingScreen\LoadingScreenScene.cs" />
+    <Compile Include="Scenes\Matchmaking\MatchmakingScene.cs" />
     <Compile Include="Scenes\Menu\MenuItem.cs" />
     <Compile Include="Scenes\Menu\MenuItemFactory.cs" />
     <Compile Include="Scenes\Menu\MenuScene.cs" />

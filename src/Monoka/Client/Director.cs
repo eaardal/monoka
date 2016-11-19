@@ -54,7 +54,7 @@ namespace Monoka.Client
             _sceneRenderer.Draw(spriteBatch);
         }
 
-        private void ActivateScene(string sceneId)
+        public void ActivateScene(string sceneId)
         {
             var sceneToActivate = _scenes.SingleOrDefault(scene => scene.Id == sceneId);
 

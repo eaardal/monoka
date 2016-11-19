@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using Autofac;
 using Monoka.Client;
+using Monoka.Client.Model;
 using Monoka.Client.Startup;
 using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Extensions;

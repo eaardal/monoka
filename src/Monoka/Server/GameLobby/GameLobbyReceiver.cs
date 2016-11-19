@@ -11,7 +11,7 @@ using Monoka.Common.Network.Messages;
 
 namespace Monoka.Server.GameLobby
 {
-    class GameLobbyReceiver : LoggingReceiveActor
+    public class GameLobbyReceiver : LoggingReceiveActor
     {
         private readonly IAutoMapperAdapter _mapper;
         private readonly IActorRef _gameLobbyManager;

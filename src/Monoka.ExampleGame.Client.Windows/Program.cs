@@ -1,4 +1,5 @@
 ﻿using System;
+using Monoka.Client.Model;
 using Monoka.Common.Infrastructure;
 
 namespace Monoka.ExampleGame.Client.Windows

@@ -6,8 +6,8 @@ namespace Monoka.Common.Network
     {
         public class Server
         {
-            //public static RemoteActorMetadata LoginReceiver => new RemoteActorMetadata("loginApi", ServerConnectionInfo.ActorSystemPath);
-            //public static RemoteActorMetadata GameLobbyReceiver => new RemoteActorMetadata("gameLobbyApi", ServerConnectionInfo.ActorSystemPath);
+            public static RemoteActorMetadata LoginReceiver => new RemoteActorMetadata("loginReceiver");
+            public static RemoteActorMetadata GameLobbyReceiver => new RemoteActorMetadata("gameLobbyReceiver");
             public static RemoteActorMetadata GameSessionReceiver => new RemoteActorMetadata("gameSessionReceiver");
         }
 

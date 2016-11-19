@@ -7,7 +7,7 @@ using Monoka.Common.Network.Messages;
 
 namespace Monoka.Server.GameSession
 {
-    internal class GameSessionReceiver :LoggingReceiveActor
+    public class GameSessionReceiver :LoggingReceiveActor
     {
         private readonly IAutoMapperAdapter _mapper;
 

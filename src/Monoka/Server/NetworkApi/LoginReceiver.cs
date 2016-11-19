@@ -9,7 +9,7 @@ using Monoka.Common.Network.Messages;
 
 namespace Monoka.Server.NetworkApi
 {
-    internal class LoginReceiver : LoggingReceiveActor
+    public class LoginReceiver : LoggingReceiveActor
     {
         private readonly ActorSelection _clientRegistry;
 

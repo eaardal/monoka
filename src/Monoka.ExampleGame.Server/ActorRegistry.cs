@@ -1,10 +1,14 @@
-﻿namespace Monoka.ExampleGame.Server
+﻿using Monoka.Common.Infrastructure;
+using Monoka.Server;
+using Monoka.Server.GameSession;
+
+namespace Monoka.ExampleGame.Server
 {
-    static class ActorRegistry
+    public static class ActorRegistry
     {
-        //public static ActorMetadata ClientRegistry => new ActorMetadata("clientRegistry", typeof(ClientRegistry));
+        public static ActorMetadata ClientRegistry => new ActorMetadata("clientRegistry", typeof(ClientRegistry));
         //public static ActorMetadata GameLobbyManager => new ActorMetadata("gameLobbyManager", typeof(GameLobbyManager));
-        //public static ActorMetadata GameSessionManager => new ActorMetadata("gameSessionManager", typeof(GameSessionManager));
+        public static ActorMetadata GameSessionManager => new ActorMetadata("gameSessionManager", typeof(GameSessionManager));
 
         //public static ActorMetadata GameSession => new ActorMetadata("gameSession_{0}", typeof(GameSession), GameSessionManager);
         //public static ActorMetadata GameEngine => new ActorMetadata("gameEngine", typeof(GameEngine));
