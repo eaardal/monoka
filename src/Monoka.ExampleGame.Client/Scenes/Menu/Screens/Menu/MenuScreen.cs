@@ -30,12 +30,17 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu
 
         public override void LoadContent()
         {
+            _menuItemFactory.LoadContent();
+
             CreateMenuItems();
         }
         
         public override void Draw(SpriteBatch spriteBatch)
         {
-            _menuItems.ForEach(menuItem => menuItem.Draw(spriteBatch));
+            foreach (var menuItem in _menuItems)
+            {
+                menuItem.DrawWithAllSettings(spriteBatch);
+            }
         }
 
         public override void Update(GameTime gameTime)

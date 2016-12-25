@@ -11,7 +11,7 @@ namespace Monoka.Client
         
         public void ActivateScreen(Screen screen)
         {
-            Log.Msg(this, l => l.Info("Activating screen {@Screen}", screen.GetType().FullName));
+            Log.Msg(this, l => l.Info("Activating screen {Screen}", screen.GetType().FullName));
 
             _currentScreen = screen;
         }
