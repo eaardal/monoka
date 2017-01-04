@@ -7,7 +7,7 @@ namespace Monoka.ExampleGame.Server.Level
     {
         public List<ITile> Tiles { get; private set; }
 
-        public Player Player { get; set; }
+        public List<Player> Players { get; private set; }
 
         public LevelState()
         {
@@ -17,7 +17,7 @@ namespace Monoka.ExampleGame.Server.Level
         public void ResetAllState()
         {
             Tiles = new List<ITile>();
-            Player = null;
+            Players = new List<Player>();
         }
 
         public ITile GetStartTile()

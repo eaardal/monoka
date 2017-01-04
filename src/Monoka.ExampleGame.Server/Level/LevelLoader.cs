@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Monoka.Common.Infrastructure.Logging.Contracts;
 
 namespace Monoka.ExampleGame.Server.Level
 {

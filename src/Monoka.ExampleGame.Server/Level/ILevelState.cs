@@ -5,7 +5,7 @@ namespace Monoka.ExampleGame.Server.Level
     internal interface ILevelState
     {
         List<ITile> Tiles { get; }
-        Player Player { get; set; }
+        List<Player> Players { get; }
         void ResetAllState();
         ITile GetStartTile();
         ITile GetEndTile();
