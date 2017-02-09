@@ -5,9 +5,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Monoka.Client;
+using Monoka.Client.Messages;
 using Monoka.Common.Infrastructure;
 using Monoka.ExampleGame.Client.Scenes.ExitGame;
 using Monoka.ExampleGame.Client.Scenes.InGame;
+using Monoka.ExampleGame.Client.Scenes.Matchmaking;
 
 namespace Monoka.ExampleGame.Client.Scenes.Menu
 {
@@ -64,13 +66,13 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu
             if (clickedMenuItem != null)
             {
                 var sceneId = clickedMenuItem.Scene.Id;
-                _messageBus.Publish(new LoadSceneMessage(sceneId));
+                _messageBus.Publish(new ActivateSceneMessage(sceneId));
             }
         }
 
         private void CreateMenuItems()
         {
-            CreateMenuItem<GameScene>();
+            CreateMenuItem<MatchmakingScene>();
             CreateMenuItem<ExitGameScene>();
         }
 

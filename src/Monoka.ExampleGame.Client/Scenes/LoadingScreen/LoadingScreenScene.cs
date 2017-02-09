@@ -20,22 +20,18 @@ namespace Monoka.ExampleGame.Client.Scenes.LoadingScreen
 
         public void LoadContent()
         {
-            throw new NotImplementedException();
         }
 
         public void UnloadContent()
         {
-            throw new NotImplementedException();
         }
 
         public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
         }
     }
 }

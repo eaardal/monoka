@@ -1,4 +1,5 @@
-﻿using Monoka.Common.Infrastructure;
+﻿using Monoka.Client;
+using Monoka.Common.Infrastructure;
 using Monoka.Server.GameLobby;
 using Monoka.Server.GameSession;
 using Monoka.Server.Model;
@@ -15,6 +16,8 @@ namespace Monoka.Server
         public static ActorMetadata GameSession => new ActorMetadata("gameSession_{0}", typeof(GameSession.GameSession), GameSessionManager);
         //public static ActorMetadata GameEngine => new ActorMetadata("gameEngine", typeof(GameEngine.GameEngine));
         public static ActorMetadata GameLobbyEmitter => new ActorMetadata("gameLobbyEmitter", typeof(GameLobbyEmitter));
+        public static ActorMetadata Matchmaker => new ActorMetadata("matchmaker", typeof(Matchmaker));
+
         //public static ActorMetadata Bank => new ActorMetadata(typeof(Bank));
         //public static ActorMetadata PowerBar => new ActorMetadata(typeof(PowerBar));
         //public static ActorMetadata BuildingRegistry => new ActorMetadata(typeof(BuildingRegistry));

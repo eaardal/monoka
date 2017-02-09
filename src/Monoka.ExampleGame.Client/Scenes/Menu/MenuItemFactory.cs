@@ -6,6 +6,7 @@ using Monoka.Client;
 using Monoka.Common.Infrastructure;
 using Monoka.ExampleGame.Client.Scenes.ExitGame;
 using Monoka.ExampleGame.Client.Scenes.InGame;
+using Monoka.ExampleGame.Client.Scenes.Matchmaking;
 
 namespace Monoka.ExampleGame.Client.Scenes.Menu
 {
@@ -57,6 +58,9 @@ namespace Monoka.ExampleGame.Client.Scenes.Menu
             if (gameScreenType == typeof(GameScene))
                 return _gameScreenTexture;
 
+            if (gameScreenType == typeof(MatchmakingScene))
+                return _gameScreenTexture;
+            
             throw new Exception("Could not find the texture for screen " + gameScreenType.FullName);
         }
     }

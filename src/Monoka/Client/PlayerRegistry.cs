@@ -2,10 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Monoka.Client.Model;
+using Monoka.Common.Infrastructure.Exceptions;
 
 namespace Monoka.Client
 {
-    internal class PlayerRegistry
+    public class PlayerRegistry : IPlayerRegistry
     {
         private readonly List<Player> _players;
 
@@ -16,7 +17,20 @@ namespace Monoka.Client
 
         public Player GetLocalPlayer()
         {
-            return _players.SingleOrDefault(player => player.IsLocalPlayer);
+            var localPlayer = _players.SingleOrDefault(player => player.IsLocalPlayer);
+
+            if (localPlayer == null)
+            {
+                throw new MonokaException($"No local player found in {nameof(PlayerRegistry)}");
+            }
+
+            return localPlayer;
+        }
+
+        public Guid GetLocalPlayerId()
+        {
+            var localPlayer = GetLocalPlayer();
+            return localPlayer.Id;
         }
 
         public bool IsKnownPlayer(Guid playerId)

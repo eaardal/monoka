@@ -106,10 +106,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\EventQueue\EventPool.cs" />
     <Compile Include="Client\GameLobby\GameLobby.cs" />
     <Compile Include="Client\GameSession\GameSessionFacade.cs" />
     <Compile Include="Client\GameSession\GameSessionReceiver.cs" />
     <Compile Include="Client\IDirector.cs" />
+    <Compile Include="Client\IMatchmakerFacade.cs" />
+    <Compile Include="Client\IPlayerRegistry.cs" />
     <Compile Include="Client\IScene.cs" />
     <Compile Include="Client\ISceneRenderer.cs" />
     <Compile Include="Client\KnownScene.cs" />
@@ -124,6 +127,8 @@
     <Compile Include="Client\Login\Results\HandshakeResult.cs" />
     <Compile Include="Client\Matchmaker.cs" />
     <Compile Include="Client\Director.cs" />
+    <Compile Include="Client\MatchmakerFacade.cs" />
+    <Compile Include="Client\Messages\ActivateSceneMessage.cs" />
     <Compile Include="Client\Model\Player.cs" />
     <Compile Include="Client\PlayerRegistry.cs" />
     <Compile Include="Client\SceneRenderer.cs" />

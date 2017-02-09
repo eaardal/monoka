@@ -111,6 +111,16 @@ namespace Monoka.Client
             public string PlayerName { get; }
         }
 
+        internal class FindGame
+        {
+            private readonly Guid _playerId;
+
+            public FindGame(Guid playerId)
+            {
+                _playerId = playerId;
+            }
+        }
+
         #endregion  
     }
 }

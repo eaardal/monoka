@@ -5,6 +5,7 @@ namespace Monoka.Client.Login
 {
     public interface ILoginFacade
     {
-        Task<HandshakeResult> Handshake(string playerName);
+        //Task<HandshakeResult> Handshake(string playerName);
+        void Handshake(string playerName);
     }
 }

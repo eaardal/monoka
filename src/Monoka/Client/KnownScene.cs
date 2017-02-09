@@ -1,6 +1,6 @@
 ﻿namespace Monoka.Client
 {
-    class KnownScene
+    public class KnownScene
     {
         public const string Menu = "Menu";
         public const string InGame = "Game";

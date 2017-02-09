@@ -4,6 +4,8 @@ using System.Linq;
 using Akka.Util.Internal;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Monoka.Client.Messages;
+using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Exceptions;
 
 namespace Monoka.Client
@@ -11,14 +13,17 @@ namespace Monoka.Client
     public class Director : IDirector
     {
         private readonly IEnumerable<IScene> _scenes;
-        private readonly SceneRenderer _sceneRenderer;
+        private readonly ISceneRenderer _sceneRenderer;
 
-        public Director(IEnumerable<IScene> scenes, SceneRenderer sceneRenderer)
+        public Director(IEnumerable<IScene> scenes, ISceneRenderer sceneRenderer, IMessageBus messageBus)
         {
             if (scenes == null) throw new ArgumentNullException(nameof(scenes));
             if (sceneRenderer == null) throw new ArgumentNullException(nameof(sceneRenderer));
+            if (messageBus == null) throw new ArgumentNullException(nameof(messageBus));
             _scenes = scenes;
             _sceneRenderer = sceneRenderer;
+
+            messageBus.Subscribe<ActivateSceneMessage>(msg => ActivateScene(msg.SceneId));
         }
         
         public void Initialize(string sceneId)
