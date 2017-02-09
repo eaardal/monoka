@@ -7,6 +7,9 @@ using Monoka.Client.Model;
 using Monoka.Client.Startup;
 using Monoka.Common.Infrastructure;
 using Monoka.Common.Infrastructure.Extensions;
+using Monoka.ExampleGame.Client.Scenes.InGame.Screens;
+using Monoka.ExampleGame.Client.Scenes.Menu.Screens.ExitGame;
+using Monoka.ExampleGame.Client.Scenes.Menu.Screens.Menu;
 
 namespace Monoka.ExampleGame.Client.Startup
 {
@@ -44,6 +47,15 @@ namespace Monoka.ExampleGame.Client.Startup
                             .As<IScene>()
                             .SingleInstance();
                     }
+
+                    // Game
+                    builder.RegisterType<GameScreen>().AsSelf().SingleInstance();
+                    builder.RegisterType<MenuScreen>().AsSelf().SingleInstance();
+                    builder.RegisterType<ExitGameScreen>().AsSelf().SingleInstance();
+                    builder.RegisterType<MenuItemFactory>().AsSelf().SingleInstance();
+
+                    // Monoka (TODO: Move)
+                    builder.RegisterType<ScreenManager>().AsSelf().SingleInstance();
 
                     if (game != null)
                     {

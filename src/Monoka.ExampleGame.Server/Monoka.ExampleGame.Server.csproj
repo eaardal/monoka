@@ -101,6 +101,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActorRegistry.cs" />
+    <Compile Include="Level\ILevelParser.cs" />
+    <Compile Include="Level\ILevelState.cs" />
+    <Compile Include="Level\ITile.cs" />
+    <Compile Include="Level\ITileParser.cs" />
+    <Compile Include="Level\LevelLoader.cs" />
+    <Compile Include="Level\LevelParser.cs" />
+    <Compile Include="Level\LevelState.cs" />
+    <Compile Include="Level\ParsedTile.cs" />
+    <Compile Include="Level\TileCollision.cs" />
+    <Compile Include="Level\TileParser.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -122,6 +133,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NetworkApi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Levels\level-syntax-readme.txt" />
+    <Content Include="Content\Levels\level1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
